@@ -1,19 +1,25 @@
 
 # funckcja zwracająca dystans pomiędzy punktami ze wzrou Eyklidesa;
-def euclideans_distance(x, y):
-    distance = 0.0
+def euclideans(x, y):
+    dist = 0.0
     for i in range(len(x)):
-        distance += (x[i] - y[i])**2
-    return distance**0.5
+        dist += (x[i] - y[i])**2
+    return dist**0.5
 
-def predict(training_data, test_data, k):
-    disances = []
-    #for i in range(len(training_data)):
-
+def closestNeighbors(training_data, test_data, k):
+    distances = []
+    for i in range(len(training_data)):
+        dist = euclideans(test_data, training_data[i])
+        distances.append((training_data[i]), dist)
+    distances.sort(key=lambda x :x[i])
+    neighbors = []
+    for i in range(k):
+        neighbors.append(distances[i][0])
+    return neighbors
 
 
 # funkcja wczytująca dane z pliku tekstowego
-def load_data(filename):
+def loadFile(filename):
     dataset = []
     with open(filename) as file:
         for line in file:
@@ -23,8 +29,7 @@ def load_data(filename):
     return dataset
 
 # wczytanie danych treningowych i testowych
-training_data = load_data('iris_training.txt')
-test_data = load_data('iris_test.txt')
+training_data = loadFile('iris_training.txt')
+test_data = loadFile('iris_test.txt')
 
-for i in test_data:
-    print(i)
+k = int(input("Podaj liczbe sasiadow k: "))
