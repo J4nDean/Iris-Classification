@@ -8,6 +8,7 @@ def euclidean_distance(x, y):
 
 # Funkcja klasyfikująca przykład na podstawie k-NN
 def classify_example(test_data, training_data, k):
+
     correct = 0
     for example in test_data:
         distances = []
@@ -51,7 +52,14 @@ def load(filename):
 
 # przykładowe użycie
 while True:
-    training_data = load('iris_training.txt')
-    test_data = load('iris_test.txt')
-    k = int(input("Podaj wartość parametru k: "))
-    classify_example(test_data, training_data, k)
+    try:
+        k = int(input("Podaj wartość parametru k: "))
+        if k == 0:
+            print("Koniec programu")
+            break
+        else:
+            training_data = load('iris_training.txt')
+            test_data = load('iris_test.txt')
+            classify_example(test_data, training_data, k)
+    except ValueError:
+        print("Nieprawidłowa wartość. Podaj liczbę całkowitą lub 0, aby zakończyć program.")
