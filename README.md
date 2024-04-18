@@ -1,4 +1,4 @@
-# Iris_Classification
+# Iris Classification
 # Algorytm k-najbliższych sąsiadów (k-NN)
 
 Ten program implementuje algorytm k-najbliższych sąsiadów (k-NN) w celu klasyfikacji przykładów. 
